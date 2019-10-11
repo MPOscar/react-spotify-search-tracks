@@ -19,10 +19,10 @@ function App() {
   };
 
   useEffect(() => {
-    fetchArtist();
+    fetchTracks();
   }, []);
 
-  function fetchArtist() {
+  function fetchTracks() {
     let url = `https://api.spotify.com/v1/search?q=${query}&type=track`;
 
     fetch(url, {
@@ -40,7 +40,7 @@ function App() {
   function handleSubmit(e) {
     window.scrollTo(0, 0);
     e.preventDefault();
-    fetchArtist();
+    fetchTracks();
   }
 
   return state.isLoggedIn ? (
