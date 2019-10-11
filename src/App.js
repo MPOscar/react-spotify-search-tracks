@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     fetchTracks();
-  }, []);
+  });
 
   function fetchTracks() {
     let url = `https://api.spotify.com/v1/search?q=${query}&type=track`;
@@ -79,7 +79,7 @@ function App() {
 
               <div className="max-w-sm rounded overflow-hidden shadow-lg mb-4">
 
-                <img className="w-full" src={track.album.images && track.album.images[0].url} alt={track.name} alt={track.name} />
+                <img className="w-full" src={track.album.images && track.album.images[0].url} alt={track.name} />
 
                 <div className="px-6 py-4">
 
@@ -109,7 +109,7 @@ function App() {
 
                 <div className="px-6 py-4">
 
-                  <a href={track.preview_url} target="_blank">
+                  <a href={track.preview_url} target="_blank" rel="noopener noreferrer">
 
                     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#Preview</span>
 
