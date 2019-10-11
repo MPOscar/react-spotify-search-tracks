@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 //
 import spfetch from './spfetch';
+import sptracks from './sptracks';
 
 function App() {
 
@@ -17,25 +18,20 @@ function App() {
     window.location.reload();
   };
 
-  function fetchTracks() {
-    let url = `https://api.spotify.com/v1/search?q=${query}&type=track`;
-
-    fetch(url, {
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${spfetch.getToken()}`
-      }
-    })
-      .then(resp => resp.json())
+  useEffect(() => {
+    sptracks(query)
       .then(data => {
-        data.tracks ? setTracks(data.tracks.items) : setTracks([])
+        data ? setTracks(data) : setTracks([])
       });
-  }
+  }, []);
 
   function handleSubmit(e) {
     window.scrollTo(0, 0);
     e.preventDefault();
-    fetchTracks();
+    sptracks(query)
+      .then(data => {
+        data ? setTracks(data) : setTracks([])
+      });
   }
 
   return state.isLoggedIn ? (
