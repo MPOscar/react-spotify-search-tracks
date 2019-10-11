@@ -4,7 +4,6 @@ import './App.css';
 //
 import spfetch from './spfetch';
 
-
 function App() {
 
   const [tracks, setTracks] = useState([]);
@@ -69,7 +68,6 @@ function App() {
           </form>
 
         </div>
-
 
         <div className="flex flex-wrap justify-evenly px-5 py-24">
 
