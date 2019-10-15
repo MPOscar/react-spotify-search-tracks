@@ -52,12 +52,7 @@ function getTokenFromUrlHash() {
 }
 
 async function fetchTokenFromPopup() {
-  return new Promise((resolve, reject) => {
-    const timeout = setTimeout(
-      reject,
-      20000,
-      new Error('Timeout getting token')
-    );
+  return new Promise((resolve, reject) => {    
     window.addEventListener(
       'message',
       function onMessage(event) {
@@ -67,7 +62,6 @@ async function fetchTokenFromPopup() {
         } catch (error) {}
         const { type, accessToken } = data || {};
         if (type === 'access_token') {
-          clearTimeout(timeout);
           resolve(accessToken);
           window.removeEventListener('message', onMessage, false);
           global.location.hash = new URLSearchParams([
